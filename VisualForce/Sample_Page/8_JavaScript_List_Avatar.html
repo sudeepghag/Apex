@@ -1,0 +1,17 @@
+function createTile (record) {
+  return [
+    '<li class="slds-item">',
+      '<div class="slds-tile slds-media">',
+        '<div class="slds-media__figure">',
+          '<img class="slds-avatar slds-avatar--medium" src="', record.get('PhotoUrl'), '" alt="" />',
+        '</div>',
+        '<div class="slds-media__body">',
+          '<h3 class="slds-truncate" title="', record.get('Name'), '"><a href="javascript:void(0);">', record.get('Name') ,'</a></h3>',
+          '<div class="slds-tile__detail slds-text-body--small">',
+            '<p class="slds-truncate">', record.get('Title') ,'</p>',
+          '</div>',
+        '</div>',
+      '</div>',
+    '</li>'
+  ].join('');
+}
