@@ -1,0 +1,32 @@
+<!-- JAVASCRIPT -->
+<script>
+  (function() {
+    var contact = new SObjectModel.Contact();
+    var contactList = document.getElementById('contact-list');
+    function createTile (record) {
+      return [
+        '<li class="slds-item">',
+          '<div class="slds-tile slds-media">',
+            '<div class="slds-media__body">',
+              '<h3 class="slds-truncate" title="', record.get('Name'), '"><a href="javascript:void(0);">', record.get('Name') ,'</a></h3>',
+              '<div class="slds-tile__detail slds-text-body--small">',
+                '<p class="slds-truncate">', record.get('Title') ,'</p>',
+              '</div>',
+            '</div>',
+          '</div>',
+        '</li>'
+      ].join('');
+    }// end of function createTile
+    contact.retrieve(
+      { orderby: [{ LastModifiedDate: 'DESC' }], limit: 10 },
+      function(error, records) {
+        if (error) {
+          alert(error.message);
+        } else {
+          contactList.innerHTML = records.map(createTile).join('');
+        }//end of if (error)
+      }// end of function(error, records)
+    ); //end of contact.retrieve
+  })();
+</script>
+<!-- / JAVASCRIPT -->
