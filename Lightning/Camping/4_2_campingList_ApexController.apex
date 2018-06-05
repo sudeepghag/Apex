@@ -7,17 +7,9 @@ public with sharing class CampingListController {
     
     @AuraEnabled
     public static Camping_Item__c saveItem(Camping_Item__c newItem){
-        
-        Integer vNum = 0;
-        
-        if (vNum == 0){
-            throw new AuraHandledException('Apex Error while saving record !');
-        }
-        else{
+
              upsert newItem;
         	 return newItem;  
-        }
-        
-      
+
     } 
 }
