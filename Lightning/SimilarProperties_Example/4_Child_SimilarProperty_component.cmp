@@ -19,6 +19,7 @@
                 </a>
                 <!-- Edit button goes here -->
                 <lightning:buttonIcon iconName="utility:edit" class="slds-col_bump-left" variant="bare" alternativeText="Edit Record" onclick="{!c.editRecord}" />
+                <lightning:buttonIcon iconName="utility:summary" class="slds-col_bump-left" variant="bare" alternativeText="Standard Edit Form" onclick="{!c.standardEditRecord}" />
             </div>
             <div aura:id="propertyDetails" class="slds-m-top_small">
                 <ul class="slds-grid slds-wrap">
