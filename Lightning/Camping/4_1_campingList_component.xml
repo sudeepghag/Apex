@@ -4,7 +4,9 @@
     <aura:attribute name="errMessage" type="String" default="None."/>
     
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
     <aura:handler name="addItem" event="c:addItemEvent" action="{!c.handleAddItem}"/>
+    <aura:handler name="updateItem" event="c:addItemEvent" action="{!c.handleAddItem}"/>
 
     <lightning:card title="Error Meesage" iconName="standard:scan_card">
 
