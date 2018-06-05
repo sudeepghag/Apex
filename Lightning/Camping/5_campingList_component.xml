@@ -1,0 +1,37 @@
+<aura:component controller="CampingListController">
+    
+    <aura:attribute name="items" type="Camping_Item__c[]"/>
+    <aura:attribute name="errMessage" type="String" default="None."/>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:handler name="addItem" event="c:addItemEvent" action="{!c.handleAddItem}"/>
+
+    <lightning:card title="Error Meesage" iconName="standard:scan_card">
+
+        <p class="slds-text-heading--small slds-p-horizontal--small">
+           {!v.errMessage}
+        </p>
+        
+    </lightning:card>
+
+    
+    <lightning:layout horizontalAlign="space">
+ 
+        <lightning:layoutItem padding="around-small">
+        	<c:campingListForm />
+        </lightning:layoutItem>
+
+        <lightning:layoutItem padding="around-small">
+            <lightning:card title="Campaign Item List">
+                <p class="slds-p-horizontal--small">
+                    <aura:iteration items="{!v.items}" var="item">
+                        <c:campingListItem item="{!item}"/>
+                    </aura:iteration>
+                </p>
+            </lightning:card>            
+        </lightning:layoutItem>
+        
+    </lightning:layout>
+               
+
+</aura:component>
