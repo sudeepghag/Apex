@@ -1,9 +1,7 @@
 <aura:component >
-    <!--aura:handler name="init" value="{!this}" action="{!c.doInit}"/-->
+
     <aura:attribute name="item" type="Camping_Item__c"/>
 
-    <aura:handler name="createItem" event="c:addItemEvent" action="{!c.handleAddItem}"/>
-    
     
     <lightning:card title="{!v.item.Name}" iconName="standard:scan_card">
 
@@ -23,7 +21,7 @@
                              checked="{!v.item.Packed__c}"
                              messageToggleActive="Yes"
                              messageToggleInactive="No"
-                             onchange="{!c.clickReimbursed}"/>
+                             onchange="{!c.packItem}"/>
         </p>
     </lightning:card>
 </aura:component>
