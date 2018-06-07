@@ -1,0 +1,16 @@
+public with sharing class ContactListSearchController {
+    
+    @AuraEnabled
+    public static List<Contact> getContacts(Id pAccountId) {
+        return [SELECT Id, FirstName, LastName, Email, Phone FROM Contact where AccountId = :pAccountId];
+    }
+    
+    @AuraEnabled
+    public static List<Contact> filterByKey(String searchKey, String pAccountId) {
+
+    	List<List<SObject>> searchList = [FIND :searchKey IN ALL FIELDS RETURNING Contact (Id, FirstName, LastName, Email, Phone Where AccountId = :pAccountId)]; 
+    	Contact [] contacts = ((List<Contact>)searchList[0]);
+		return contacts;
+    }
+    
+}
