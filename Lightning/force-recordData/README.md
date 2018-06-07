@@ -1,8 +1,7 @@
 # Lighting force:recordData
 
-### Apex/Lightning/force-recordData/0_Lighting_force-recordData_Example.jpg
+## Manipulate Records with force:recordData
 
-![GitHub Logo](Apex/Lightning/force-recordData/0_Lighting_force-recordData_Example.jpg)
-
+https://trailhead.salesforce.com/en/modules/lightning_data_service/units/lightning_data_service_manipulate_records
 
 ![GitHub Logo](./0_Lighting_force-recordData_Example.jpg)
