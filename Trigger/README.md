@@ -17,13 +17,15 @@ where trigger_events can be a comma-separated list of one or more of the followi
 
 
 ## Apex Trigger - Bulk Request
+```
 Trigger MileageTrigger on Mileage__c (before insert, before update) {
 
                Set<ID> ids = Trigger.newMap.keySet();
                List<User> c = [SELECT Id FROM user WHERE mileageid__c in :ids];
 
 }
-   
+```
+
 ## Apex Trigger - Pre-Delete validation   
 trigger oppTrigger on Opportunity (before delete) {
 
