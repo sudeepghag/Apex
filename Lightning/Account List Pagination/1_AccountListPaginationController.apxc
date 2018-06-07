@@ -1,4 +1,4 @@
-public with sharing class AccountListController {
+public with sharing class AccountListPaginationController {
    @AuraEnabled
  public static AccountPagerWrapper fetchAccount(Decimal pageNumber ,Integer recordToDisply) {
       Integer pageSize = recordToDisply;
