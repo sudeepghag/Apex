@@ -1,8 +1,10 @@
 # Triggers
 
-trigger ***TriggerName*** on ObjectName (trigger_events) {
+```
+trigger TriggerName on ObjectName (trigger_events) {
    code_block
 }
+```
 
 where trigger_events can be a comma-separated list of one or more of the following events:
 * before insert
