@@ -1,0 +1,24 @@
+Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.Account.fields.getMap();
+ 
+ 
+Map <String, Schema.SObjectField> fieldMap= Account.sObjectType.getDescribe().fields.getMap();
+
+for(Schema.SObjectField sfield : fieldMap.Values()){
+    
+	schema.describefieldresult dfield = sfield.getDescribe();
+	system.debug('Name: ' + dfield.getName() + ' / isAccessible: ' + dfield.isAccessible() + ' / isUpdateable: '+ dfield.isUpdateable());
+
+}
+
+
+
+Map <String, Schema.SObjectField> fieldMap= Account.sObjectType.getDescribe().fields.getMap();
+
+Set <String> fieldsForQuery = new Set<String> {'name', 'billingcountry', 'shippingcountry', 'sla__c', 'active__c'};
+
+for(String sfieldAPIName : fieldsForQuery ){
+ 
+    schema.describefieldresult dfield = fieldMap.get(sfieldAPIName).getDescribe();
+    system.debug('Name: ' + sfieldAPIName + ' / isAccessible(): ' + dfield.isAccessible());
+
+}
