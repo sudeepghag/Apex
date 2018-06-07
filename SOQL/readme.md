@@ -1,3 +1,5 @@
+
+### AggregateResult
 ```javascript
 List<AggregateResult> results = [SELECT Industry, count(Id) total FROM Account GROUP BY Industry]; 
 
