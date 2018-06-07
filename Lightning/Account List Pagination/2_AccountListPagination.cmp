@@ -1,4 +1,4 @@
-<aura:component controller="AccountListController">
+<aura:component controller="AccountListPaginationController">
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     <aura:attribute name="Accounts" type="Account[]"/>
