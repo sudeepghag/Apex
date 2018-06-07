@@ -5,6 +5,8 @@
     <aura:attribute name="Account" type="Account" />    
     <aura:attribute name="Contacts" type="List" />
     <aura:attribute name="Columns" type="List" />
+    <aura:attribute name="count" type="Integer" default="0"/>
+    <aura:attribute name="searchApplied" type="Boolean" default="false"/>
         
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:ContactSearchKeyChange" action="{!c.searchKeyChange}"/>
@@ -23,7 +25,12 @@
                             name="enter-search"
                             type="search"
                             value="{!v.searchKey}"             
-                        />        
+                        />
+            <br/>
+            <aura:if isTrue="{!v.searchApplied}">
+    			<span>{!v.count} records found.</span>
+			</aura:if>            
+            
         </div> 
         <div class="slds-col slds-size_3-of-12">
         	<lightning:button label="Search" iconName="utility:search" iconPosition="left" onclick="{!c.searchKeyChange}"/>
