@@ -13,15 +13,16 @@
 
 ## Dynamic SOSL
 
+```
   List<List <sObject>> myQuery = search.query(***SOSL_search_string***);
   
   Example:
   String searchquery='FIND\'Edge*\'IN ALL FIELDS RETURNING Account(id,name),Contact, Lead'; 
   List<List<SObject>>searchList=search.query(searchquery);        
+```
 
 
-
-escapeSingleQuotes:
+## escapeSingleQuotes:
 ```
 String str = 'L\'Oreal'; //<-- get the escaped name
 
