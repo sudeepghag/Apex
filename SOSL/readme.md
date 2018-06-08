@@ -1,6 +1,15 @@
 # SOSL
 
 ## SOSL Syntax
+ 
+``` 
+   List<List<SObject>> searchList = [FIND 'map*' IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity, Lead];
+  
+   List<Account> accList = searchList[0];
+   List<Contact> accList = searchList[1];
+   List<Opportunity> accList = searchList[2];
+   List<Lead> accList = searchList[3];
+```
 
 ## Dynamic SOSL
 
