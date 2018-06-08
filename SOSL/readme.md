@@ -5,10 +5,10 @@
 ``` 
    List<List<SObject>> searchList = [FIND 'map*' IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity, Lead];
   
-   List<Account> accList = searchList[0];
-   List<Contact> accList = searchList[1];
-   List<Opportunity> accList = searchList[2];
-   List<Lead> accList = searchList[3];
+   Account [] accounts = ((List<Account>)searchList[0]);
+   Contact [] contacts = ((List<Contact>)searchList[1]);
+   Opportunity [] opportunities = ((List<Opportunity>)searchList[2]);
+   Lead [] leads = ((List<Lead>)searchList[3]);
 ```
 
 ## Dynamic SOSL
