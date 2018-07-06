@@ -1,0 +1,78 @@
+public class ProjectCalloutService {
+    //Complete the implementation for business and callout logic
+
+   @InvocableMethod(label='postOpportunityToPMS' description='Creates a Project in External PMS System by using HTTP Callout.')
+	public static void postOpportunityToPMS(List<ID> OpportunityIds){
+		Id OpportunityId = OpportunityIds[0];
+        Opportunity opty = [select Id, Name, AccountId, account.name, CloseDate, Amount, StageName from Opportunity where Id = :OpportunityId];
+        system.debug('postOpportunityToPMS --> opty# ' + opty.Id + ' Opty.Account '+ opty.account.name);   
+        Payload pl = New Payload(opty.Id, opty.Name, opty.Account.Name, opty.CloseDate, opty.Amount);
+        system.debug('postOpportunityToPMS --> pl : ' + pl); 
+        String reqBody = JSON.serializePretty(pl);
+        String headerToken = ServiceTokens__c.getValues('ProjectServiceToken').Token__c;
+                
+        QueueablePMSCall updater = new QueueablePMSCall(reqBody, headerToken, opty);
+        Id jobId = System.enqueueJob(updater);
+        system.debug('jobId: ' + jobId);  
+	
+	}
+    
+    class Payload{
+        Id opportunityId;
+        String opportunityName;
+        String accountName;
+        Date closeDate;
+        Decimal amount;
+        
+        Payload(Id opportunityId, String opportunityName, String accountName, Date closeDate, Decimal amount){
+            	system.debug('Payload Constructor Start');
+                this.opportunityId = opportunityId;
+                this.opportunityName = opportunityName;
+                this.accountName = accountName;
+                this.closeDate = closeDate;
+                this.amount = amount;   
+            	system.debug('Payload Constructor End');
+        }//public Payload
+    }//class Payload
+    
+    class QueueablePMSCall implements Queueable, Database.AllowsCallouts {
+
+        private String reqBody;
+        private String headerToken;
+        private Opportunity opty;
+        
+		 QueueablePMSCall(String reqBody, String headerToken, Opportunity opty) {
+            this.reqBody = reqBody;
+            this.headerToken = headerToken;
+            this.opty = opty; 
+        }//QueueablePMSCall
+        
+        public void execute(QueueableContext context) {
+
+              // perform other processing or callout
+              system.debug('execute --> start ');
+                HttpRequest req = new HttpRequest();
+                req.setEndpoint('callout:ProjectService');
+                req.setMethod('POST');
+            	req.setHeader('Content-Type', 'application/json;charset=UTF-8');            	
+            	req.setHeader('token', this.headerToken);
+            	system.debug('execute --> reqBody : ' + this.reqBody);
+            	req.setBody(this.reqBody);
+				Http http = new Http();
+                HTTPResponse res = http.send(req); 
+
+                if (res.getStatusCode() == 201) {
+                    System.debug('200OK resBody: ' + res.getBody()); 
+                    opty.StageName = 'Submitted Project';
+                    update opty;
+                } else {
+                    System.debug('Error - getStatusCode:' + res.getStatusCode() + ' resBody:'  + res.getBody());
+                    opty.StageName = 'Resubmit Project';
+                    update opty;
+                }
+            
+        }//execute
+        
+    }//class QueueablePMSCall
+    
+}
