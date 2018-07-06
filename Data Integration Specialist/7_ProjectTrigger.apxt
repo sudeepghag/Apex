@@ -1,0 +1,11 @@
+trigger ProjectTrigger on Project__c (after update) {
+    //Call the Billing Service callout logic here
+    
+    if (Trigger.isAfter) {
+        System.debug('********Trigger values***********');    
+        System.debug('***SFDC: Trigger.old is: ' + Trigger.old);
+        System.debug('***SFDC: Trigger.new is: ' + Trigger.new);
+       	BillingCalloutService.callBillingService(Trigger.newMap.keySet());
+    }
+    
+}
