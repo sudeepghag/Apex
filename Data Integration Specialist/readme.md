@@ -1,4 +1,4 @@
 # Data Integration Specialist
 
-![Data Integration Specialist](./Data Integration Specialist - ERD.png)
+![Data Integration Specialist](./DataIntegrationSpecialist_ERD.png)
 
