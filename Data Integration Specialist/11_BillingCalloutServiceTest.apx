@@ -1,0 +1,57 @@
+@isTest
+private class BillingCalloutServiceTest {
+  //Implement mock callout tests here
+
+    static Set<id> helperDataCreate(){
+        Opportunity o = new Opportunity();
+        o.Name = 'Test Opportunity';
+		o.CloseDate = system.today() + 30;
+        o.StageName = 'Prospecting';
+        insert o;
+        
+        Project__c prj = new Project__c();
+        prj.Billable_Amount__c = 100;
+        prj.Start_Date__c = system.today();
+        prj.End_Date__c = system.today() + 7;
+        prj.ProjectRef__c = '1234';
+        prj.Status__c = 'Billable';
+        prj.Opportunity__c = o.Id;
+        insert prj;
+        
+        Set<Id> prjList = new Set<Id>{prj.Id};
+            
+        ServiceCredentials__c sc = new ServiceCredentials__c();
+        sc.Name = 'BillingServiceCredential';
+        sc.Username__c = 'username';
+        sc.Password__c = 'password';
+        insert sc;
+        
+		return prjList;    
+    }//helperDataCreate
+    
+    @isTest static void testCalloutSuccess() {              
+        // This causes a fake response to be generated
+        Test.setMock(WebServiceMock.class, new BillingCalloutServiceMock());
+        // Call the method that invokes a callout
+        
+        Set<Id> prjList = helperDataCreate();
+		Test.startTest();
+        	BillingCalloutService.callBillingService(prjList);
+        Test.stopTest();
+        // Verify that a fake result is returned
+        Project__c prjR = [select id, ProjectRef__c, status__c from Project__c where ProjectRef__c = '1234'];
+        System.assertEquals('Billed', prjR.status__c); 
+        
+        
+        
+        Test.setMock(WebServiceMock.class, new BillingCalloutServiceMockFailure());
+
+		Set<Id> prjList2 = helperDataCreate();
+        
+        BillingCalloutService.callBillingService(prjList2);
+        Project__c prjR2 = [select id, ProjectRef__c, status__c from Project__c where ProjectRef__c = '1234'];
+        System.assertEquals('Billable', prjR2.status__c); 
+  
+    }
+  
+}
