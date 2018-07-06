@@ -1,0 +1,31 @@
+public class BillingCalloutService {
+    //Implement business and callout logic methods here
+    @future(callout=true)
+    public static void callBillingService(set<Id> prjList){
+        list<Project__c> oProjects = [select Id, Status__c, ProjectRef__c, Billable_Amount__c, Name from Project__c where Id in :prjList];
+		String retVal;
+        
+        for (Project__c oProject : oProjects) {
+            if(oProject.Status__c == 'Billable'){
+                system.debug('callBillingService --> oProject.Status__c: ' + oProject.Status__c);
+                BillingServiceProxy.project p = new BillingServiceProxy.project();
+                p.projectRef = oProject.ProjectRef__c;
+                p.billAmount = oProject.Billable_Amount__c;
+                p.username = ServiceCredentials__c.getValues('BillingServiceCredential').username__c ;
+                p.password = ServiceCredentials__c.getValues('BillingServiceCredential').password__c ;
+                
+                BillingServiceProxy.InvoicesPortSoap11 soap = new BillingServiceProxy.InvoicesPortSoap11();
+                retVal = soap.billProject(p);
+                system.debug('callBillingService --> retVal: ' + retVal);
+
+                if(retVal=='ok'){
+                    oProject.Status__c = 'Billed';
+                }//end if
+                
+            }//end if
+    	}//end for
+		
+        update oProjects;
+
+    }
+}
