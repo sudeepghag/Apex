@@ -1,0 +1,81 @@
+@isTest
+private class ProjectCalloutServiceTest {
+  //Implement mock callout tests here
+  
+    @isTest static void testPostCalloutSuccess() {
+        // Set mock callout class 
+        Test.setMock(HttpCalloutMock.class, new ProjectCalloutServiceMock()); 
+        // This causes a fake response to be sent
+        // from the class that implements HttpCalloutMock. 
+        
+        Account ac = new Account();
+        ac.Name = 'Test';
+        insert ac;
+        
+        system.debug(' testPostCalloutSuccess--> created opportunity');
+		Opportunity op = New Opportunity();
+        op.Name = 'TEst';
+        op.Amount = 1000;
+        op.Type = 'New Customer';
+        op.StageName = 'Prospecting';
+        op.CloseDate = system.today() + 30;
+        op.AccountId = ac.Id;
+        insert op;
+        system.debug('testPostCalloutSuccess--> opportunity#' + op.Id + ' account: ' + op.AccountId);
+        system.assert(op.Id != null);
+
+        //create the Custom Settings
+        ServiceTokens__c servToken = new ServiceTokens__c();
+        servToken.Name = 'ProjectServiceToken';
+        servToken.Token__c = 'shgglskgblsbglbdsflgbldmfbgldb';
+        insert servToken;
+
+        
+        List<ID> OpportunityIds = new List<ID> {op.Id};
+    
+        system.debug('testPostCalloutSuccess--> List<Id>');
+        
+        Test.startTest();       
+        		system.debug('testPostCalloutSuccess--> After --> Test.startTest()');
+                ProjectCalloutService.postOpportunityToPMS(OpportunityIds);
+        		system.debug('testPostCalloutSuccess--> Before -->  Test.stopTest()');
+        Test.stopTest();           
+        
+    }//testPostCalloutSuccess
+    
+	@isTest static void testPostCalloutFailure() {
+
+        Test.setMock(HttpCalloutMock.class, new ProjectCalloutServiceMockFailure()); 
+		
+        system.debug(' testPostCalloutFailure--> created opportunity');
+		Opportunity op = New Opportunity();
+        op.Name = 'TEst';
+        op.Amount = 1000;
+        op.Type = 'New Customer';
+        op.StageName = 'Closed Won';
+        op.StageName = 'Prospecting';
+        op.CloseDate = system.today() + 30;        
+        insert op;
+        system.debug('testPostCalloutFailure--> opportunity#' + op.Id);
+        system.assert(op.Id != null);
+
+        //create the Custom Settings
+        ServiceTokens__c servToken = new ServiceTokens__c();
+        servToken.Name = 'ProjectServiceToken';
+        servToken.Token__c = 'shgglskgblsbglbdsflgbldmfbgldb';
+        insert servToken;
+
+        
+        List<ID> OpportunityIds = new List<ID> {op.Id};
+            
+        system.debug('testPostCalloutFailure--> List<Id>');
+        
+        Test.startTest();       
+        		system.debug('testPostCalloutFailure--> After --> Test.startTest()');
+                ProjectCalloutService.postOpportunityToPMS(OpportunityIds);
+        		system.debug('testPostCalloutFailure--> Before -->  Test.stopTest()');
+        Test.stopTest();         
+        
+    }//testPostCalloutFailure
+    
+}
