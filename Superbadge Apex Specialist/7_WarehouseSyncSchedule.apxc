@@ -1,0 +1,6 @@
+global class WarehouseSyncSchedule implements Schedulable, Database.AllowsCallouts {
+  // implement scheduled code here
+    global void execute(SchedulableContext ctx) {
+        WarehouseCalloutService.runWarehouseEquipmentSync();
+    }  
+}
