@@ -1,4 +1,4 @@
-#Lightning App Example
+# Lightning App Example
 
 ## Build a Lightning App with the Lightning Design System
 
