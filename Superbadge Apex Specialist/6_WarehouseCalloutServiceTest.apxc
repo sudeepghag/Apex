@@ -1,0 +1,19 @@
+@isTest
+private class WarehouseCalloutServiceTest {
+  // implement your mock callout test here
+  @IsTest
+  private static void testWarehouseCallout() {
+    Test.setMock(HttpCalloutMock.class, new WarehouseCalloutServiceMock());
+    Test.startTest();
+      WarehouseCalloutService.runWarehouseEquipmentSync();
+      WarehouseCalloutService.runWarehouseEquipmentSync();
+    Test.stopTest();
+      
+    // runs callout and check results
+    List<Product2> ep = [select Id, Name from Product2 where Warehouse_SKU__c != null];
+    System.assertEquals(2, ep.size());
+    
+ 
+      
+  }
+}
