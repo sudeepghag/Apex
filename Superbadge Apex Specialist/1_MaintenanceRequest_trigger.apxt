@@ -1,0 +1,10 @@
+trigger MaintenanceRequest on Case (before update, after update) {
+    
+    if(Trigger.isUpdate){
+        if(Trigger.isAfter){
+            system.debug(' Trigger - MaintenanceRequest - Update - After');
+            MaintenanceRequestHelper.updateWorkOrders(Trigger.NewMap.keySet());
+            system.debug('Size: ' + Trigger.NewMap.keySet().size());
+        }
+    }
+}
