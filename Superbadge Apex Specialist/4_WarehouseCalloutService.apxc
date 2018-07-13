@@ -1,0 +1,65 @@
+public with sharing class WarehouseCalloutService {
+
+    public class jsonListOfEquipment{
+        List<jsonEquipment> lst;
+    }
+    public class jsonEquipment{
+            Id sid;
+            Boolean replacement;
+            Integer quantity;
+            String name;
+            Integer maintenanceperiod;
+            Integer lifespan;
+            Double cost;
+            String sku;
+    }//end class jsonEquipment  
+    
+    private static final String WAREHOUSE_URL = 'https://th-superbadge-apex.herokuapp.com/equipment';
+
+
+    // complete this method to make the callout (using @future) to the
+    // REST endpoint and update equipment on hand.
+    @future(callout=true)
+    public static void runWarehouseEquipmentSync(){
+
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(WAREHOUSE_URL);
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        // If the request is successful, parse the JSON response.
+        if (response.getStatusCode() == 200) {
+            // Deserialize the JSON string into collections of primitive data types.
+            list<jsonEquipment> results = (list<jsonEquipment>) JSON.deserialize(response.getBody(), list<jsonEquipment>.class);
+            list<Product2> equipments = new list<Product2>();
+            list<Product2> searchEquipments;
+            Product2 equipment;
+            system.debug('result ' + results); 
+            for (jsonEquipment e : results){
+                searchEquipments = [select Cost__c, Lifespan_Months__c, Maintenance_Cycle__c, Name, Current_Inventory__c, Replacement_Part__c, Warehouse_SKU__c from Product2 where name = :e.name];
+                equipment = new Product2();
+                        equipment.Cost__c = e.cost; 
+                        equipment.Lifespan_Months__c =  e.lifespan;
+                        equipment.Maintenance_Cycle__c = e.maintenanceperiod; 
+                        equipment.Name = e.name;
+                        equipment.Current_Inventory__c = e.quantity; 
+                        equipment.Replacement_Part__c = e.replacement; 
+                        equipment.Warehouse_SKU__c = e.sku;
+                
+                	if(searchEquipments.size() > 0){
+                    	equipment.id = searchEquipments[0].Id;
+                    } 	
+                equipments.add(equipment);
+                system.debug('equipment: ' + equipment); 
+            }
+            upsert equipments;
+
+        }//end if
+        
+        
+    }//end runWarehouseEquipmentSync
+
+    
+  
+
+}//end WarehouseCalloutService
