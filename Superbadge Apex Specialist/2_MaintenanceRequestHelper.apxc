@@ -1,0 +1,30 @@
+public class MaintenanceRequestHelper {
+    
+    public static void updateWorkOrders(Set<Id> ids){
+        // update workorders
+        List<Case> oCases = [select id, type, status, Vehicle__c, Equipment__c, Date_Reported__c, Date_Due__c, Least_Equipment_Maintenance_Cycle__c from Case where id IN :ids];
+        List<Case> oCasesForInsert = new List<Case>();
+        Case newCase;
+        for (Case c : oCases){
+            if (c.status == 'Closed' && (c.type == 'Repair' || c.type == 'Routine Maintenance')){
+                	newCase = new Case();
+				           newCase.Type = 'Routine Maintenance';
+                           newCase.Subject = 'Auto - RM';
+                		   newCase.Vehicle__c = c.Vehicle__c;
+                		   newCase.Equipment__c = c.Equipment__c;	
+                           newCase.Date_Reported__c = system.today();
+                           newCase.Date_Due__c = system.today().addDays(Integer.valueOf(Math.Round(c.Least_Equipment_Maintenance_Cycle__c != NUll ? c.Least_Equipment_Maintenance_Cycle__c:0)));
+                	//system.debug('newCase c.Vehicle__c: ' + c.Vehicle__c + ' c.Equipment__c: ' + c.Equipment__c);
+                	oCasesForInsert.add(newCase);
+            }//end if 
+        }//end for
+        
+        system.debug('oCasesForInsert.size(): ' + oCasesForInsert.size());
+
+        if(oCasesForInsert.size() > 0){
+            insert oCasesForInsert;
+        }
+        
+    }//end updateWorkOrders
+    
+}//end MaintenanceRequestHelper
