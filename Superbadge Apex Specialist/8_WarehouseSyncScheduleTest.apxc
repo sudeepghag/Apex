@@ -1,0 +1,29 @@
+@IsTest
+private class WarehouseSyncScheduleTest {
+
+    public static String CRON_EXP = '0 0 1 * * ?';
+
+    @IsTest
+    static void testScheduledJob() {
+
+        Test.setMock(HttpCalloutMock.class, new WarehouseCalloutServiceMock());
+		Test.startTest();
+        
+            // Schedule the test job
+            String jobId = System.schedule('ScheduledApexTest', CRON_EXP, new WarehouseSyncSchedule());         
+     
+            // Verify the scheduled job has not run yet.
+            List<Product2> ep = [SELECT Id FROM Product2 WHERE Warehouse_sku__c != null];
+    
+            System.assertEquals(0, ep.size(), 'Equipment records does not exists before job has run');
+
+        // Stopping the test will run the job synchronously
+        Test.stopTest();
+        
+        // Now that the scheduled job has executed,
+        // check that our tasks were created
+        ep = [SELECT Id FROM Product2 WHERE Warehouse_sku__c != null];
+		
+        System.assertEquals(2, ep.size(), 'Equipment records created after job has run');
+    }
+}
