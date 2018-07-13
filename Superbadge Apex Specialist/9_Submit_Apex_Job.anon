@@ -1,0 +1,5 @@
+
+String sch = '0 0 1 * * ?';
+String jobID = system.schedule('Update Inventory at 1PM everyday', sch, new WarehouseSyncSchedule());
+
+
