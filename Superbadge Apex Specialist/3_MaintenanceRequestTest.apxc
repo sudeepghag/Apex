@@ -1,0 +1,78 @@
+@isTest
+private class MaintenanceRequestTest {
+	@isTest
+    static void MethodforTest(){
+		
+        List<Case> listMaintenanceRequests = createTestData();
+        system.debug('createTestData - test records created ');
+        
+        for(Case c: listMaintenanceRequests ){
+			c.status = 'Working';            
+        }
+        system.debug('Before - Status Update to Working');
+        update listMaintenanceRequests;
+        system.debug('After - Status Update to Working');
+        
+ 
+        for(Case c: listMaintenanceRequests ){
+			c.status = 'Closed';            
+        }
+        system.debug('Before - Status Update to Closed');
+        update listMaintenanceRequests;
+        system.debug('After - Status Update to Closed');
+        
+        Object mrCount = [select count(id) from Case where Subject = 'Auto - RM' and type = 'Routine Maintenance'][0].get('expr0');
+        Integer MaintenanceRequestCount = Integer.valueOf(mrCount);
+        system.assertEquals(300, MaintenanceRequestCount);
+        
+        
+    }//end of MethodforTest
+
+    private static List<Case> createTestData(){
+        List<Case> listMaintenanceRequests = new List<Case>();
+        Case mr;
+        
+        Vehicle__c v = new Vehicle__c(Name = 'Vehicle - test ');
+        insert v;     
+        
+        Product2 Equipment = new Product2(Name = 'TestEQuipment', Maintenance_Cycle__c = 10, Replacement_Part__c = true, IsActive = true);
+        insert Equipment;
+        
+        system.debug('Equipment Record Created ' + Equipment.Name );
+        
+        for (Integer i = 0; i < 301; i++) {
+            
+
+            //system.debug('Vehicle Record Created - ' + v.id);
+
+            mr = new Case (Subject = 'Test', Type = 'Routine Maintenance', Status = 'New', Origin = 'Phone',  Vehicle__c = v.id, Equipment__c = equipment.Id, Date_Reported__c = system.today());
+
+            listMaintenanceRequests.add(mr);
+
+        }//end of for
+        
+        insert listMaintenanceRequests;
+        system.debug('Maintenance Records 300 created');
+        
+        list<Work_Part__c> wp = new list<Work_Part__c>();
+        
+        for(Case c: listMaintenanceRequests ){
+
+            Work_Part__c wp1 = new Work_Part__c(Equipment__c = Equipment.Id, Maintenance_Request__c = c.Id, Quantity__c = 1);
+            wp.add(wp1);
+            
+            //system.debug('Work Part 1 Created.');
+            
+            Work_Part__c wp2 = new Work_Part__c(Equipment__c = Equipment.Id, Maintenance_Request__c = c.Id, Quantity__c = 1);
+            wp.add(wp2);
+            
+            //system.debug('Work Part 2 Created.');
+            
+        }
+        
+        insert wp;
+        
+        return listMaintenanceRequests;
+    }//end of createTestData 
+    
+}//end of class MaintenanceRequestTest
