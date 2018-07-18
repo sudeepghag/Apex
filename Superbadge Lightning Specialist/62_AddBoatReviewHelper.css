@@ -1,0 +1,25 @@
+({
+	onInit : function(component, event) {
+        
+        console.log("AddBoatReviewHelper--OnInit--start");
+        
+        component.find("service").getNewRecord(
+            "BoatReview__c", // sObject type (objectApiName)
+            null,      // recordTypeId
+            false,     // skip cache?
+            $A.getCallback(function() {
+                var rec = component.get("v.boatReview");
+                var error = component.get("v.recordError");
+                if(error || (rec === null)) {
+                    console.log("AddBoatReviewHelper--OnInit--NewRecord--Error initializing record template: " + error);
+                    return;
+                }
+                console.log("AddBoatReviewHelper--OnInit--NewRecord--Record template initialized: " + component.get("v.boat.Id"));
+                component.set("v.boatReview.Name", "Sample Name ");
+                component.set("v.boatReview.Boat__c", component.get("v.boat.Id"));
+            })
+        );
+
+        
+	}
+})

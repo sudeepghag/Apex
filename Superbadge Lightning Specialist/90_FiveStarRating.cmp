@@ -1,0 +1,16 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<aura:attribute name="value" type="Integer" default="0"/>
+    <aura:attribute name="readonly" type="Boolean" default="false"/>
+	
+    <aura:handler name="change" value="{!v.value}" action="{!c.onValueChange}"/>
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    
+    <ltng:require 
+        styles="{!$Resource.fivestar + '/rating.css'}"
+        scripts="{!$Resource.fivestar + '/rating.js'}"
+        afterScriptsLoaded="{!c.afterScriptsLoaded}" />
+    
+    <div aura:id="ratingarea" class="{!(v.readonly)?'readonly c-rating':'c-rating'}">
+        <ul></ul>
+    </div>
+</aura:component>
