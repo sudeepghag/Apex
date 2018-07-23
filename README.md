@@ -7,6 +7,7 @@ Map <String, Schema.SObjectField> fieldMap= Account.sObjectType.getDescribe().fi
 for(Schema.SObjectField sfield : fieldMap.Values()){
 
   schema.describefieldresult dfield = sfield.getDescribe();
+  
   system.debug('Name: ' + dfield.getName() + ' / isAccessible: ' + dfield.isAccessible() + ' / isUpdateable: '+ dfield.isUpdateable());
 	
 }
