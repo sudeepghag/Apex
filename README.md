@@ -12,6 +12,9 @@ for(Schema.SObjectField sfield : fieldMap.Values()){
 	
 }
 
+## Field Picklist Values
+List<Schema.PicklistEntry> PRODUCT_FAMILY = Product2.Family.getDescribe().getPicklistValues();
+
 ## Field Label
 labelProductFamily = Product2.Family.getDescribe().getLabel();
 
