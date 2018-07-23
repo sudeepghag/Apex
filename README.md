@@ -13,5 +13,6 @@ for(Schema.SObjectField sfield : fieldMap.Values()){
 
 ## Field Label
 labelProductFamily = Product2.Family.getDescribe().getLabel();
+
 labelProductInventory = Product2.Initial_Inventory__c.getDescribe().getLabel();
 
