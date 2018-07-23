@@ -17,3 +17,7 @@ labelProductFamily = Product2.Family.getDescribe().getLabel();
 
 labelProductInventory = Product2.Initial_Inventory__c.getDescribe().getLabel();
 
+## Field Label - in VisualForce
+<apex:column headerValue="{!$ObjectType.Product2.Fields.Name.Label}" >
+
+
