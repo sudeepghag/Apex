@@ -1,0 +1,55 @@
+<apex:page standardController="Product2" extensions="Product2Extension" >
+    <apex:sectionHeader title="New Product" subtitle="Add Inventory" />
+    <apex:pageMessages id="pageMessages" />
+    <apex:form id="form" >
+        <apex:actionRegion >
+            <apex:pageBlock title="Existing Inventory" id="InventoryChart">
+                <apex:chart data="{!Inventory}" height="200" width="300" >
+                    <apex:legend position="left"/>
+                    
+                    <apex:axis type="Category" position="left" title="Family" grid="true"
+                        fields="name" dashSize="2">
+                        <apex:chartLabel />
+                    </apex:axis>
+                    
+                    <apex:axis type="Numeric" position="bottom" fields="val" title="Quantity Remaining">
+                        <apex:chartLabel />
+                    </apex:axis>
+                    
+                    <apex:barSeries orientation="horizontal" axis="left" stacked="true"
+                        xField="val" yField="name" title="Family"/>
+                </apex:chart>
+
+            </apex:pageBlock>
+            <apex:pageBlock title="New Products" >
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton action="{!save}" value="Save" reRender="InventoryChart"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton action="{!addRows}" value="Add" reRender="pageMessages,orderItemTable"/>
+                </apex:pageBlockButtons>
+
+                <apex:pageBlockTable value="{!productsToInsert}" var="p" id="orderItemTable" >
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.Name.Label}" >
+                        <apex:inputText value="{!p.productRecord.Name}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.Family.Label}" >
+                        <apex:selectList value="{!p.productRecord.Family}" size="1" multiselect="false" >
+                            <apex:selectOptions value="{!FamilyOptions}"/>
+                        </apex:selectList>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.isActive.Label}" >
+                        <apex:inputField value="{!p.productRecord.isActive}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.PricebookEntry.Fields.UnitPrice.Label}" >
+                        <apex:inputText value="{!p.pricebookEntryRecord.Unitprice}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.Initial_Inventory__c.Label}" >
+                        <apex:inputField value="{!p.productRecord.Initial_Inventory__c}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:actionRegion>
+    </apex:form>
+</apex:page>
+                                        

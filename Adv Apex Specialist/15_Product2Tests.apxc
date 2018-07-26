@@ -1,0 +1,91 @@
+@isTest
+private class Product2Tests {
+
+    /**
+     * @name product2Extension_UnitTest
+     * @description UnitTest for product2Extension
+    **/
+
+    static TestMethod void Product2Extension_UnitTest(){
+        //Test.startTest();
+        	PageReference pageRef = Page.Product2New;
+         	Test.setCurrentPage(pageRef);
+
+        	Product2 prod = new Product2();
+        	Apexpages.StandardController sc = new Apexpages.standardController(prod);
+        
+        	//list<Product2Extension.ProductWrapper> lstPW = new list<Product2Extension.ProductWrapper>();
+        
+            Product2Extension ext = new Product2Extension(sc);
+        	system.assertEquals(ext.productsToInsert.size(), constants.DEFAULT_ROWS);//first visit
+
+        	list<Product2Extension.ProductWrapper> lstPW = ext.productsToInsert;
+        
+        	//Product2Extension.ProductWrapper pw = new Product2Extension.ProductWrapper();
+        	lstPW[0].productRecord.Name = 'A1';
+        	lstPW[0].productRecord.isActive = true;
+        	lstPW[0].productRecord.Initial_Inventory__c = 10;
+        	lstPW[0].productRecord.Family = 'Desert';
+        	lstPW[0].pricebookEntryRecord.UnitPrice = 11;
+			//lstPW.add(pw);
+
+        	//pw = new Product2Extension.ProductWrapper();
+        	lstPW[1].productRecord.Name = 'A2';
+        	lstPW[1].productRecord.isActive = true;
+        	lstPW[1].productRecord.Initial_Inventory__c = 10;
+        	lstPW[1].productRecord.Family = 'Desert';
+        	lstPW[1].pricebookEntryRecord.UnitPrice = 12;
+			//lstPW.add(pw);
+        
+        	//pw = new Product2Extension.ProductWrapper();
+        	lstPW[2].productRecord.Name = 'A3';
+        	lstPW[2].productRecord.isActive = true;
+        	lstPW[2].productRecord.Initial_Inventory__c = 10;
+        	lstPW[2].productRecord.Family = 'Desert';
+        	lstPW[2].pricebookEntryRecord.UnitPrice = 12;
+			//lstPW.add(pw);
+        
+        	//pw = new Product2Extension.ProductWrapper();
+        	lstPW[3].productRecord.Name = 'A4';
+        	lstPW[3].productRecord.isActive = true;
+        	lstPW[3].productRecord.Initial_Inventory__c = 10;
+        	lstPW[3].productRecord.Family = 'Desert';
+        	lstPW[3].pricebookEntryRecord.UnitPrice = 12;
+			//lstPW.add(pw);
+
+        	//pw = new Product2Extension.ProductWrapper();
+        	lstPW[4].productRecord.Name = 'A5';
+        	lstPW[4].productRecord.isActive = true;
+        	lstPW[4].productRecord.Initial_Inventory__c = 10;
+        	lstPW[4].productRecord.Family = 'Desert';
+        	lstPW[4].pricebookEntryRecord.UnitPrice = 12;
+			//lstPW.add(pw);
+        
+            ext.save();
+	
+        	List<ChartHelper.ChartData> lstCD = ext.GetInventory();
+        
+			list<product2> prods = [select id, name from product2];
+        	system.assertEquals(5, prods.size());
+        
+        	ext.addRows();      
+        	system.assertEquals(ext.productsToInsert.size(), constants.DEFAULT_ROWS*2);//user clicks on add button
+        	ext.save(); 
+            
+        //Test.stopTest();
+    }//Product2Extension_UnitTest
+    
+    static TestMethod void product2Trigger_UnitTest(){
+        TestDataFactory.InsertTestData(5);
+        Product2 p = [select id, name, Family, Quantity_Ordered__c, Initial_Inventory__c from Product2 limit 1][0];
+        system.debug('Product2: ' + p);
+        String proFamily = p.Family;
+        system.debug('proFamily: ' + proFamily);
+        Inventory_Setting__mdt lstInvSet = [select MasterLabel, Low_Quantity_alert__c from Inventory_Setting__mdt where MasterLabel = :proFamily][0];
+        system.debug('Inventory_Setting__mdt: ' + lstInvSet);
+        Double alertQuantity = Double.valueOf(lstInvSet.Low_Quantity_alert__c);
+        p.Quantity_Ordered__c = alertQuantity + 1;
+        update p;
+    }//product2Trigger_UnitTest
+    
+}

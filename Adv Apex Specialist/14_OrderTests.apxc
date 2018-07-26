@@ -1,0 +1,91 @@
+@isTest
+private class OrderTests {
+
+    @testSetup static void SetupTestData() {
+		TestDataFactory.InsertTestData(5);
+	}
+ /*   
+    @isTest
+    public static void testOrderUpdateMethod(){
+        TestDataFactory.InsertTestData(5);
+		list<Order> orders = [select Id, Status from Order];       
+        for (Order o: orders){
+			o.status = 'Activated';            
+        }        
+        update orders;
+    }
+    
+*/
+    
+    
+    @isTest
+    static void OrderUpdate_UnitTest(){
+        Map<id, Product2> oldProducts = new Map<id, Product2>([select id, Quantity_Remaining__c from Product2]);
+        
+		list<Order> orders = [select Id, Status from Order];       
+        for (Order o: orders){
+			o.status = constants.ACTIVATED_ORDER_STATUS;            
+        }        
+        update orders;   
+        Map<Id, Integer> quantities = new Map<Id, Integer>(); 
+        List<AggregateResult> results = [select PriceBookEntry.Product2Id, sum(quantity) total from OrderItem group by PriceBookEntry.Product2Id];
+        for(AggregateResult ar: results){
+            quantities.put((Id)ar.get('PriceBookEntry.Product2Id'), Integer.valueOf(ar.get('total')));    
+        } 
+        Map<id, Product2> newProducts = new Map<id, Product2>([select id, Quantity_Remaining__c from Product2]);
+            
+        set<Id> productIds = oldProducts.keySet();
+        for(Id p:productIds){
+            TestDataFactory.VerifyQuantityOrdered(oldProducts.get(p), newProducts.get(p), (quantities.get(p)==null?0:quantities.get(p)));
+        }
+        //VerifyQuantityOrdered
+            
+    }//end OrderUpdate_UnitTest
+    
+ 	@isTest
+    static void OrderExtension_UnitTest (){
+      		//add data Account, Order, OrderItems, PriceBook, PriceBookEntry, InventoryLevel 		
+        	//TestDataFactory.InsertTestData(5);
+
+        	Account a = [select Id, Name from Account where name = 'Test1' limit 1][0];
+        	String orderName = 'Test'+a.Id;
+        	Order ord = [select Id, Name from Order where name = :orderName][0];
+        
+        	PageReference pageRef = Page.OrderEdit;
+         	Test.setCurrentPage(pageRef);
+	
+        	Apexpages.StandardController sc = new Apexpages.StandardController(ord);
+        
+            OrderExtension ext = new OrderExtension(sc);
+			  
+       	
+        	list<OrderItem> lstOrderItems = ext.orderItemList;
+        
+			lstOrderItems[0].Quantity += 1; 
+        	ext.OnFieldChange();
+        	ext.save();
+
+        	integer totalPages = ext.GetTotalPages();
+        	
+        	if(ext.GetHasNext())
+        		ext.Next();
+        	if(ext.GetHasPrevious())
+        		ext.Previous();
+        	
+        	ext.Last();
+        	ext.First();
+            
+        	ext.selectedFamily = 'Desert';
+        	ext.SelectFamily();
+        	
+			
+        	
+        
+        	//list<product2> prods = [select id, name from product2];
+        	//system.assertEquals(5, prods.size());
+
+    }
+
+    
+
+}

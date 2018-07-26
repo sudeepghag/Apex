@@ -1,0 +1,190 @@
+/**
+ * @name TestDataFactory
+ * @description Contains methods to construct and/or validate commonly used records
+**/
+public with sharing class TestDataFactory {
+
+    /**
+     * @name ConstructCollaborationGroup
+     * @description
+    **/
+    public static CollaborationGroup ConstructCollaborationGroup(){
+        //ToDo: Ensure this method returns a single Chatter CollaborationGroup
+        //    whose Name starts with 'TEST' followed by the INVENTORY_ANNOUNCEMENTS constant
+        //    and configured so anyone can join, see and post updates.
+        CollaborationGroup cg = new CollaborationGroup(Name = 'Test' + constants.INVENTORY_ANNOUNCEMENTS, CollaborationType='Public');
+        //insert cg;
+        return cg;
+    }
+
+    /**
+     * @name CreateProducts
+     * @description Constructs a list of Product2 records for unit tests
+    **/
+    public static List<Product2> ConstructProducts(Integer cnt){
+        //ToDo: Ensure this method returns a list, of size cnt, of uniquely named Product2 records
+        //  with all the required fields populated
+        //  and IsActive = true
+        //  an Initial Inventory set to 10
+        //  and iterating through the product family picklist values throughout the list.
+        List<Schema.PicklistEntry> lstFamily = constants.PRODUCT_FAMILY;
+        List<Product2> lstProducts = new list<Product2>();
+        Integer cntrFamily=0;
+        for (integer i=0;i<cnt;i++){
+            Product2 p = new Product2(name='Product'+i, Family=lstFamily[cntrFamily].getValue(), IsActive=true, Initial_Inventory__c=10);
+            lstProducts.add(p);
+            cntrFamily++;
+            if(cntrFamily==lstFamily.size())
+                cntrFamily=0;
+        }
+        //insert lstProducts;
+        return lstProducts;
+    }
+
+    /**
+     * @name CreatePricebookEntries
+     * @description Constructs a list of PricebookEntry records for unit tests
+    **/
+    public static list<PricebookEntry> ConstructPricebookEntries(List<Product2> prods){
+        //ToDo: Ensure this method returns a corresponding list of PricebookEntries records
+        //  related to the provided Products
+        //  with all the required fields populated
+        //  and IsActive = true
+        //  and belonging to the standard Pricebook
+        list<PricebookEntry> lstPriceBookEntries = new list<PricebookEntry>();
+        for(Product2 p:prods){
+            PricebookEntry pe = new PricebookEntry(Product2Id=p.Id, PriceBook2Id=constants.STANDARD_PRICEBOOK_ID, IsActive=true, UnitPrice=10);
+            lstPriceBookEntries.add(pe);
+        }
+        //insert lstPriceBookEntries;
+        return lstPriceBookEntries;
+    }
+
+    /**
+     * @name CreateAccounts
+     * @description Constructs a list of Account records for unit tests
+    **/
+    public static List<Account> ConstructAccounts(Integer cnt){
+        //ToDo: Ensure this method returns a list of size cnt of uniquely named Account records
+        //  with all of the required fields populated.
+        List<Account> accts = new List<Account>();
+        for(integer i=0;i<cnt;i++){
+            Account a = new Account(name='Test'+i);
+            accts.add(a);
+        }
+        //insert accts;
+        return accts;
+    }
+
+    /**
+     * @name CreateContacts
+     * @description Constructs a list of Contacxt records for unit tests
+    **/
+    public static list<Contact> ConstructContacts(Integer cnt, List<Account> accts){
+        //ToDo: Ensure this method returns a list, of size cnt, of uniquely named Contact records
+        //  related to the provided Accounts
+        //  with all of the required fields populated.
+        list<Contact> lstContacts = new list<Contact>();
+        integer counter = 0; 
+            for(integer i=0;i<cnt;i++){
+                if(counter==accts.size())
+                    counter=0;
+                contact c = new contact(FirstName='Test-'+i, LastName=accts[counter].name, accountid=accts[counter].Id);
+                counter++;
+                lstContacts.add(c);
+            }
+        
+        //insert lstContacts;
+        return lstContacts;
+    }
+
+    /**
+     * @name CreateOrders
+     * @description Constructs a list of Order records for unit tests
+    **/
+    public static list<Order> ConstructOrders(Integer cnt, List<Account> accts){
+        //ToDo: Ensure this method returns a list of size cnt of uniquely named Order records
+        //  related to the provided Accounts
+        //  with all of the required fields populated.
+         integer counter = 0; 
+        list<Order> lstOrders = new list<Order>();
+            for(integer i=0;i<cnt;i++){
+                if(counter==accts.size())
+                    counter=0;
+                Order o = new Order(accountid=accts[counter].Id, EffectiveDate=System.today()+7, status='Draft', PriceBook2Id=constants.STANDARD_PRICEBOOK_ID, Name='Test'+accts[counter].Id);
+                lstOrders.add(o);
+                counter++;
+            }
+        //insert lstOrders;
+        return lstOrders;
+    }
+
+    /**
+     * @name CreateOrderItems
+     * @description Constructs a list of OrderItem records for unit tests
+    **/
+    public static List<OrderItem> ConstructOrderItems(integer cnt, list<pricebookentry> pbes, list<order> ords){
+        //ToDo: Ensure this method returns a list of size cnt of OrderItem records
+        //  related to the provided Pricebook Entries
+        //  and related to the provided Orders
+        //  with all of the required fields populated.
+        //  Hint: Use the DEFAULT_ROWS constant for Quantity as it will be used in the next challenge
+        Integer counter = 0;
+        Integer pbeCounter = 0;
+        List<OrderItem> lstOrderItems = new list<OrderItem>();
+
+        for(integer i=0;i<cnt;i++){
+            if(counter==ords.size()){
+                counter=0;
+            }    
+            if(pbeCounter >= pbes.size()){
+                pbeCounter=0;
+            }
+            OrderItem oi = new OrderItem(PriceBookEntryId=pbes[pbeCounter].Id, Quantity=constants.DEFAULT_ROWS, UnitPrice=pbes[pbeCounter].UnitPrice, OrderId=ords[counter].Id);
+            lstOrderItems.add(oi);
+            counter++;
+            pbeCounter++;
+        }
+                
+            
+        
+        //insert lstOrderItems;
+        return lstOrderItems;
+    }
+
+    /**
+     * @name SetupTestData
+     * @description Inserts accounts, contacts, Products, PricebookEntries, Orders, and OrderItems.
+    **/
+    public static void InsertTestData(Integer cnt){
+        //ToDo: Ensure this method calls each of the construct methods
+        //  and inserts the results for use as test data.
+       CollaborationGroup cg = ConstructCollaborationGroup();
+        insert cg;
+       List<Account> a = ConstructAccounts(cnt);
+        insert a;
+       List<Contact> c = ConstructContacts(cnt,a);
+        insert c;
+       List<Product2> p = ConstructProducts(cnt*3);
+        insert p;
+       list<PricebookEntry> pbe = ConstructPricebookEntries(p);
+        insert pbe;
+       list<Order> o = ConstructOrders(cnt, a);
+        insert o;
+       List<OrderItem> oi = ConstructOrderItems(cnt*3, pbe, o);
+        insert oi;
+       
+        
+    }
+    
+    /**
+     * @name VerifyQuantityOrdered
+     * @description This method should perform an assertion that verifies that updatedProduct's Quantity_Ordered__c field 
+     * is equal to the sum of the originalProduct's Quantity_Ordered__c field and the value of qtyOrdered
+    **/
+    public static void VerifyQuantityOrdered(Product2 originalProduct, Product2 updatedProduct, Integer qtyOrdered){
+        system.assertEquals(updatedProduct.Quantity_Ordered__c , originalProduct.Quantity_Ordered__c +  qtyOrdered);
+    }
+
+
+}
