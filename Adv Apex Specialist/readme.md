@@ -3,6 +3,6 @@
 
 https://trailhead.salesforce.com/superbadges/superbadge_aap
 
-![](./0_Product2New.PNG)
+![Apex/Adv Apex Specialist](./0_Product2New.PNG)
 
-![](./0_OrderEdit.PNG)
+![Apex/Adv Apex Specialist](./0_OrderEdit.PNG)
