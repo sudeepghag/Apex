@@ -23,4 +23,8 @@ labelProductInventory = Product2.Initial_Inventory__c.getDescribe().getLabel();
 ## Field Label - in VisualForce
 <apex:column headerValue="{!$ObjectType.Product2.Fields.Name.Label}" >
 
+## Compound Field - Read & Set individual fields
+	Double theLatitude = myObject__c.aLocation__latitude__s;
+	myObject__c.aLocation__longitude__s = theLongitude;
 
+	https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/compound_fields_limitations.htm
