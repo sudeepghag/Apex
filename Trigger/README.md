@@ -41,3 +41,6 @@ trigger oppTrigger on Opportunity (before delete) {
 
 }
 ```
+
+### Enable/Disable trigger on the fly
+![Apex/Trigger](./enabling_disabling_trigger_on_the_fly.PNG)
