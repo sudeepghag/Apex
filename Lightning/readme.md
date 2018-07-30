@@ -9,7 +9,7 @@
 ##  Communicating between Lightning Components and Visualforce Pages
     https://developer.salesforce.com/blogs/developer-relations/2017/01/lightning-visualforce-communication.html
 
-## GoogleMap Example [Link]https://github.com/ccoenraets/lc-vf-communication
+## GoogleMap Example [Link](https://github.com/ccoenraets/lc-vf-communication)
 
 ## Handling Server-Side Errors
 If your Apex code encounters an error, you can create and throw an `AuraHandledException`. Catching other exceptions, such as a DML exception, and rethrowing them as an `AuraHandledException` also results in much better experience on the client side.
