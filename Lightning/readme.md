@@ -9,3 +9,5 @@
 ##  Communicating between Lightning Components and Visualforce Pages
     https://developer.salesforce.com/blogs/developer-relations/2017/01/lightning-visualforce-communication.html
 
+## GoogleMap Example
+    https://github.com/ccoenraets/lc-vf-communication
