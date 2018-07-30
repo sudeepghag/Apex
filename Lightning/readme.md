@@ -11,3 +11,6 @@
 
 ## GoogleMap Example
     https://github.com/ccoenraets/lc-vf-communication
+
+## Handling Server-Side Errors
+If your Apex code encounters an error, you can create and throw an AuraHandledException. Catching other exceptions, such as a DML exception, and rethrowing them as an AuraHandledException also results in much better experience on the client side.
