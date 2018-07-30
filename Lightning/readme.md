@@ -5,3 +5,7 @@
 
 ### Modularizing Code in Lightning Components
   https://developer.salesforce.com/blogs/developer-relations/2016/12/lightning-components-code-sharing.html
+
+##  Communicating between Lightning Components and Visualforce Pages
+    https://developer.salesforce.com/blogs/developer-relations/2017/01/lightning-visualforce-communication.html
+
