@@ -1,4 +1,4 @@
-# Lighting App/Components Examples
+# Lightning Components
 
 ## Lightning Component Tips & Gotchas
   https://trailhead.salesforce.com/modules/lex_dev_lc_vf_tips
