@@ -10,3 +10,6 @@
 
 ### Rendering GitHub JSON Data in Salesforce
    [Link](https://developer.salesforce.com/blogs/developer-relations/2015/08/rendering-github-json-data-salesforce.html)
+
+### Authentication for Salesforce Connect Custom Adapters
+   [Link](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_connector_authentication.htm)
