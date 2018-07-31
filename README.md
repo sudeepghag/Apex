@@ -1,7 +1,7 @@
 # Apex
 
-## Field Level Access
-
+### Field Level Access
+```
 Map <String, Schema.SObjectField> fieldMap= Account.sObjectType.getDescribe().fields.getMap();
 
 for(Schema.SObjectField sfield : fieldMap.Values()){
@@ -11,17 +11,23 @@ for(Schema.SObjectField sfield : fieldMap.Values()){
   system.debug('Name: ' + dfield.getName() + ' / isAccessible: ' + dfield.isAccessible() + ' / isUpdateable: '+ dfield.isUpdateable());
 	
 }
+```
 
-## Field Picklist Values
-List<Schema.PicklistEntry> PRODUCT_FAMILY = Product2.Family.getDescribe().getPicklistValues();
+### Field Picklist Values
+> List<Schema.PicklistEntry> PRODUCT_FAMILY = Product2.Family.getDescribe().getPicklistValues();
 
-## Field Label
-labelProductFamily = Product2.Family.getDescribe().getLabel();
+### Get Record Types
+> Schema.DescribeSObjectResult R = Account.SObjectType.getDescribe();
+> List<Schema.RecordTypeInfo> RT = R.getRecordTypeInfos();
 
-labelProductInventory = Product2.Initial_Inventory__c.getDescribe().getLabel();
 
-## Field Label - in VisualForce
-<apex:column headerValue="{!$ObjectType.Product2.Fields.Name.Label}" >
+### Field Label
+> labelProductFamily = Product2.Family.getDescribe().getLabel();
+
+> labelProductInventory = Product2.Initial_Inventory__c.getDescribe().getLabel();
+
+### Field Label - in VisualForce
+><apex:column headerValue="{!$ObjectType.Product2.Fields.Name.Label}" >
 
 ## Compound Field - Read & Set individual fields
 	Double theLatitude = myObject__c.aLocation__latitude__s;
