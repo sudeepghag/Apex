@@ -17,9 +17,10 @@ for(Schema.SObjectField sfield : fieldMap.Values()){
 > List<Schema.PicklistEntry> PRODUCT_FAMILY = Product2.Family.getDescribe().getPicklistValues();
 
 ### Get Record Types
-> Schema.DescribeSObjectResult R = Account.SObjectType.getDescribe();
-> List<Schema.RecordTypeInfo> RT = R.getRecordTypeInfos();
-
+```
+	Schema.DescribeSObjectResult R = Account.SObjectType.getDescribe();
+	List<Schema.RecordTypeInfo> RT = R.getRecordTypeInfos();
+```
 
 ### Field Label
 > labelProductFamily = Product2.Family.getDescribe().getLabel();
