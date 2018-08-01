@@ -32,3 +32,13 @@ String strEsc = String.escapeSingleQuotes(str); //<-- pass through escape method
 
 System.debug(strEsc); //<-- output: L\'Oreal
 ```
+
+### WITH SNIPPET
+```
+FIND {San Francisco} IN ALL FIELDS RETURNING KnowledgeArticleVersion(id, title WHERE PublishStatus = 'Online' AND Language = 'en_US') WITH SNIPPET (target_length=120)
+```
+
+### WITH HIGHLIGHT
+```
+FIND {Salesforce West} IN ALL FIELDS RETURNING Building__c(Name, BuildingDescription__c) WITH HIGHLIGHT
+```
