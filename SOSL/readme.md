@@ -35,7 +35,9 @@ System.debug(strEsc); //<-- output: L\'Oreal
 
 ### WITH SNIPPET
 ```
-FIND {San Francisco} IN ALL FIELDS RETURNING KnowledgeArticleVersion(id, title WHERE PublishStatus = 'Online' AND Language = 'en_US') WITH SNIPPET (target_length=120)
+FIND {San Francisco} IN ALL FIELDS RETURNING KnowledgeArticleVersion(id, title WHERE 
+PublishStatus = 'Online' AND Language = 'en_US') 
+WITH SNIPPET (target_length=120)
 ```
 
 ### WITH HIGHLIGHT
