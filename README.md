@@ -38,3 +38,7 @@ for(Schema.SObjectField sfield : fieldMap.Values()){
 
 ### Setting DML Options
 [Link](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_dml_database_dmloptions.htm)
+
+
+### Triggers and Order of Execution
+[Link](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm)
