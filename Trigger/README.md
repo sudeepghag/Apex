@@ -1,9 +1,29 @@
 # Triggers
 
 ```apex
-trigger TriggerName on ObjectName (trigger_events) {
-   code_block
+triger AccountTrigger on Account(before insert, after insert, before update, after update, before delete, after delete){
+
+	if(Trigger.isBefore && Trigger.isInsert){
+		AccountTriggerHandler.onBeforeInsert(Trigger.old, Trigger.oldMap, Trigger.new, Trigger.newMap);
+	}
+	if(Trigger.isAfter && Trigger.isInsert){
+		AccountTriggerHandler.onAfterInsert(Trigger.old, Trigger.oldMap, Trigger.new, Trigger.newMap);
+	}
+	if(Trigger.isBefore && Trigger.isUpdate){
+		AccountTriggerHandler.onBeforeUpdate(Trigger.old, Trigger.oldMap, Trigger.new, Trigger.newMap);
+	}
+	if(Trigger.isAfter && Trigger.isUpdate){
+		AccountTriggerHandler.onAfterUpdate(Trigger.old, Trigger.oldMap, Trigger.new, Trigger.newMap);
+	}
+	if(Trigger.isBefore && Trigger.isDelete){
+		AccountTriggerHandler.onBeforeDelete(Trigger.old, Trigger.oldMap, Trigger.new, Trigger.newMap);
+	}
+	if(Trigger.isAfter && Trigger.isDelete){
+		AccountTriggerHandler.onAfterDelete(Trigger.old, Trigger.oldMap, Trigger.new, Trigger.newMap);
+	}
+
 }
+
 ```
 
 where trigger_events can be a comma-separated list of one or more of the following events:
