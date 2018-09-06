@@ -1,5 +1,6 @@
 ####Javascript
-	trigger OpportunityTrigger on Opportunity (before delete) {
+
+trigger OpportunityTrigger on Opportunity (before delete) {
           
           Map<Id, Opportunity> OpptyMap = new Map<Id, Opportunity>();
 
@@ -11,5 +12,5 @@
               o.addError('Cannot delete opportunity with a quote');
           }//end of for
   
-	}//end of trigger OpportunityTrigger
+}//end of trigger OpportunityTrigger
 
