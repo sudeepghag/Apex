@@ -1,4 +1,4 @@
-####Javascript
+ ####Javascript
 
 trigger OpportunityTrigger on Opportunity (before delete) {
           
@@ -13,4 +13,5 @@ trigger OpportunityTrigger on Opportunity (before delete) {
           }//end of for
   
 }//end of trigger OpportunityTrigger
+
 
