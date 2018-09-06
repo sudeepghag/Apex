@@ -1,5 +1,5 @@
 
-trigger OpportunityTrigger on Opportunity (before delete) {
+	trigger OpportunityTrigger on Opportunity (before delete) {
           
           Map<Id, Opportunity> OpptyMap = new Map<Id, Opportunity>();
 
