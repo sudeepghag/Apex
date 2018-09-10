@@ -2,8 +2,8 @@ Describing sObjects Using Schema Method
 
 https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_dynamic_describeSObject.htm
 
-###javascript
-```
+```javascript
+
 // sObject types to describe
 String[] types = new String[]{'Account','Merchandise__c'};
 
