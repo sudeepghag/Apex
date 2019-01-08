@@ -50,7 +50,9 @@ https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_de
    
 9. Open a command window in the \sample directory
    
-   ant deployCode
+   ant deployCode   
+   
+   ant retrieveCode
    
 
 ## Ant Migration Tool Guide
