@@ -52,4 +52,203 @@ https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_de
    
    ant deployCode
    
-   
+
+## Ant Migration Tool Guide
+
+https://developer.salesforce.com/docs/atlas.en-us.216.0.daas.meta/daas/meta_development.htm
+
+Metadata Types:
+https://developer.salesforce.com/docs/atlas.en-us.216.0.api_meta.meta/api_meta/meta_types_list.htm
+
+Metadata Type	Allows Wildcard (*)?
+AccountSettings	Not Applicable
+ActionLinkGroupTemplate	Yes
+ActionOverride	No
+ActivitiesSettings	Not Applicable
+AddressSettings	Not Applicable
+AnalyticSnapshot	No
+ApexClass	Yes
+ApexComponent	Yes
+ApexPage	Yes
+ApexTrigger	Yes
+AppMenu	Yes
+ApprovalProcess	Yes
+ArticleType	Yes
+AssignmentRules	Yes
+Audience	Yes
+AuthProvider	Yes
+AuraDefinitionBundle	Yes
+AutoResponseRules	Yes
+BaseSharingRule	Yes
+Bot	Yes
+BotVersion	No
+BrandingSet	Yes
+BusinessHoursSettings	Not Applicable
+BusinessProcess	(See description.)
+CallCenter	Yes
+CaseSettings	Not Applicable
+CaseSubjectParticle	No
+Certificate	Yes
+ChatterAnswersSettings	Not Applicable
+ChatterExtension	Not Applicable
+CleanDataService	Yes
+CMSConnectSource	Yes
+CompanySettings	Not Applicable
+Community (Zone)	Yes
+CommunityTemplateDefinition	Yes
+CommunityThemeDefinition	Yes
+CompactLayout	Yes
+ConnectedApp	Yes
+ContentAsset	Yes
+ContractSettings	Not Applicable
+CorsWhitelistOrigin	Yes
+CriteriaBasedSharingRule	Yes
+CspTrustedSite	Not Applicable
+CustomApplication	Yes
+CustomApplicationComponent	Yes
+CustomFeedFilter	Yes
+CustomField	No
+CustomLabel	No
+Custom Metadata Types (CustomObject)	Yes
+CustomMetadata	Yes
+CustomLabels	Yes
+CustomObject	(See description.)
+CustomObjectTranslation	Yes
+CustomPageWebLink	Yes
+CustomPermission	Yes
+CustomSite	Yes
+CustomTab	Yes
+Dashboard	No
+DataCategoryGroup	Yes
+DelegateGroup	Yes
+Document	No
+DuplicateRule	Yes
+EclairGeoData	Yes
+EmailServicesFunction	No
+EmailTemplate	No
+EmbeddedServiceBranding	No
+EmbeddedServiceConfig	No
+EmbeddedServiceLiveAgent	No
+EntitlementProcess	Yes
+EntitlementSettings	Not Applicable
+EntitlementTemplate	Yes
+EventDelivery	Yes
+EventSubscription	Yes
+ExternalServiceRegistration	Yes
+ExternalDataSource	Yes
+FeatureParameterBoolean	Yes
+FeatureParameterDate	Yes
+FeatureParameterInteger	Yes
+FieldSet	Yes
+FileUploadAndDownloadSecuritySettings	Not Applicable
+FlexiPage	Yes
+Flow	Yes
+FlowCategory	Yes
+FlowDefinition	Yes
+Folder	No
+FolderShare	No
+ForecastingSettings	Not Applicable
+GlobalValueSet	Yes
+GlobalValueSetTranslation	Yes
+GlobalPicklistValue	No
+Group	Yes
+HomePageComponent	Yes
+HomePageLayout	Yes
+IdeasSettings	Not Applicable
+Index	No
+InstalledPackage	Yes
+KeywordList	Yes
+KnowledgeSettings	Not Applicable
+Layout	Yes
+Letterhead	No
+LightningBolt	Yes
+LightningComponentBundle	Not Applicable
+LightningExperienceTheme	Yes
+ListView	No
+LiveAgentSettings	Not Applicable
+LiveChatAgentConfig	Yes
+LiveChatButton	Yes
+LiveChatDeployment	Yes
+LiveChatSensitiveDataRule	Yes
+ManagedTopics	Yes
+MatchingRule	Yes
+Metadata	No
+MetadataWithContent	No
+MilestoneType	Yes
+MlDomain (Beta)	Yes
+MobileSettings	Not Applicable
+ModerationRule	Yes
+NamedCredential	Yes
+NamedFilter	No
+NameSettings	Not Applicable
+Network	Yes
+NetworkBranding	Yes
+OmniChannelSettings	Not Applicable
+OpportunitySettings	Not Applicable
+OrderSettings	Not Applicable
+OrgPreferenceSettings	No applicable
+OwnerSharingRule	Yes
+Package	No
+PathAssistant	Yes
+PathAssistantSettings	Not Applicable
+PermissionSet	Yes
+Picklist (Including Dependent Picklist)	No
+PlatformCachePartition	Yes
+Portal	Yes
+PostTemplate	Yes
+PresenceDeclineReason	Yes
+PresenceUserConfig	Yes
+ProductSettings	Not Applicable
+Profile	Yes
+ProfileActionOverride	No
+ProfilePasswordPolicy	Yes
+ProfileSessionSetting	Yes
+Queue	Yes
+QueueRoutingConfig	Yes
+QuickAction	Yes
+QuoteSettings	Not Applicable
+RecordType	No
+RemoteSiteSetting	Not Applicable
+Report	No
+ReportType	Yes
+Role	Yes
+SamlSsoConfig	Yes
+Scontrol	Yes
+SearchLayouts	No
+SearchSettings	No
+SecuritySettings	Not Applicable
+ServiceChannel	Yes
+ServicePresenceStatus	Yes
+SharingBaseRule	No
+SharingReason	No
+SharingRecalculation	No
+SharingRules	Yes
+SharingSet	Yes
+SiteDotCom	Yes
+Skill	Yes
+SocialCustomerServiceSettings	No
+StandardValueSet	No
+StandardValueSetTranslation	Yes
+StaticResource	Yes
+SynonymDictionary	Yes
+Territory	Yes
+Territory2	Yes
+Territory2Model	Yes
+Territory2Rule	Yes
+Territory2Settings	No
+Territory2Type	Yes
+TopicsForObjects	Yes
+TransactionSecurityPolicy	Yes
+Translations	Yes
+ValidationRule	No
+WaveApplication	Yes
+WaveDashboard	Yes
+WaveDataflow	Yes
+WaveDataset	Yes
+WaveLens	Yes
+WaveTemplateBundle	Yes
+WaveXmd	Yes
+WebLink	No
+Workflow	Yes
+
+
