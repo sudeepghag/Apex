@@ -12,10 +12,15 @@ https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_de
 
    Visit http://ant.apache.org/
 
-3. Set up the environment variables 
-   ANT_HOME
-   JAVA_HOME
-   PATH
+3. Set up the environment variables:
+
+   ANT_HOME    :  C:\Sudeep\Software\apache-ant-1.10.3
+   
+   JAVA_HOME   :  C:\Program Files\Java\jdk1.8.0_172
+   
+   PATH        :  C:\Program Files\Java\jdk1.8.0_172\bin
+   
+   CLASSPATH   :  C:\Program Files\Java\jdk1.8.0_172\lib
    
    Ant Installation Guide at http://ant.apache.org/manual/install.html
 
