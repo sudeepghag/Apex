@@ -253,5 +253,21 @@ https://developer.salesforce.com/docs/atlas.en-us.216.0.api_meta.meta/api_meta/m
 *	WebLink		--	No
 *	Workflow		--	Yes
 *	
+### Get list of Lightning Component Definitions
+https://brave-goat-447291-dev-ed.my.salesforce.com/0Ab
 
-
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>ObjectSearchController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>ObjectSearch</members>
+        <members>OpenAPICompDefinition</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <version>44.0</version>
+</Package>
+```
