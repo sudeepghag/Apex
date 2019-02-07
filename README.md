@@ -93,3 +93,8 @@ Apex Webservices (SOAP API and REST API) – System (Consequently, the current u
 
 ### Apex Enterprise Patterns: Service Layer
 [Link](https://trailhead.salesforce.com/content/learn/modules/apex_patterns_sl)
+
+#### ApexMocks open source library [link](https://githubsfdeploy.herokuapp.com/?owner=financialforcedev&repo=fflib-apex-mocks)
+#### Apex Common open source library [link](https://githubsfdeploy.herokuapp.com/?owner=financialforcedev&repo=fflib-apex-common)
+
+Install the ApexMocks library first and then Apex Commons library
