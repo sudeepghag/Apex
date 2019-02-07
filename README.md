@@ -84,3 +84,12 @@ Email Service – User
 All types of Jobs – System
 Apex Webservices (SOAP API and REST API) – System (Consequently, the current user’s credentials are not used, and any user who has access to these methods can use their full power, regardless of permissions, field-level security, or sharing rules.)
 ```
+
+### Apply Domain Layer Principles in Apex
+[Link](https://trailhead.salesforce.com/content/learn/modules/apex_patterns_dsl/apex_patterns_dsl_apply_dl_principles)
+
+### Apply Unit of Work Principles in Apex
+[Link](https://trailhead.salesforce.com/content/learn/modules/apex_patterns_sl/apex_patterns_sl_apply_uow_principles?trail_id=force_com_dev_advanced)
+
+### Apex Enterprise Patterns: Service Layer
+[Link](https://trailhead.salesforce.com/content/learn/modules/apex_patterns_sl)
