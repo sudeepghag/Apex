@@ -15,3 +15,10 @@
 
 #### Debugging
 > console.log('someVariable: ' + JSON.stringify(someVariable));
+
+### Lightning CSS Namespacing
+[link](https://developer.salesforce.com/blogs/developer-relations/2015/05/loading-external-js-css-libraries-lightning-components.html)
+
+#### CSS Namespacer tool
+    [link](https://bootstrap-namespacer.herokuapp.com)
+
