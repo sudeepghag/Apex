@@ -98,3 +98,15 @@ Apex Webservices (SOAP API and REST API) – System (Consequently, the current u
 #### Apex Common open source library [link](https://githubsfdeploy.herokuapp.com/?owner=financialforcedev&repo=fflib-apex-common)
 
 Install the ApexMocks library first and then Apex Commons library
+
+#### Apex Code Size
+``` javascript
+Integer totalchar=0;  
+for(ApexClass a: [Select Id, Name, Body from ApexClass]){ 
+	if(!a.body.containsIgnoreCase('testmethod') && !a.body.containsIgnoreCase('@isTest')){ 
+		system.debug(a.Id + ' ' + a.name + ' ' + a.body.length()); 
+		totalchar = totalchar + a.body.length(); 
+	}//if 
+}//for 
+System.debug(totalchar);
+```
