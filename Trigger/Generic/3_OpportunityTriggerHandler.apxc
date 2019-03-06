@@ -1,0 +1,30 @@
+public class OpportunityTriggerHandler implements ITriggerHandler{
+   
+    public void BeforeInsert(List<Opportunity> newOppsList){
+		//business logic
+     }
+   
+    public void BeforeUpdate(Map<Id, SObject> newItems, Map<Id, SObject> oldItems) {
+		//business logic    
+    }
+ 
+    public void BeforeDelete(Map<Id, SObject> oldItems) {
+		//business logic
+	  }
+ 
+    public void AfterInsert(Map<Id, SObject> newItems){
+		//business logic
+    } 
+    public void AfterUpdate(Map<Id, SObject> newItems, Map<Id, SObject> oldItems){
+		//business logic	
+    }
+ 
+    public void AfterDelete(Map<Id, SObject> oldItems) {
+		//business logic	
+	  }
+ 
+    public void AfterUndelete(Map<Id, SObject> oldItems) {
+		//business logic	
+	  }
+	
+}
