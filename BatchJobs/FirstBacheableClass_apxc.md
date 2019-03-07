@@ -1,4 +1,4 @@
-``` javascript
+``` java
 global class FirstBacheableClass implements Database.Batchable<sObject>, Schedulable{
 
  global String query;
