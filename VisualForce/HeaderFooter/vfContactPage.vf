@@ -1,0 +1,20 @@
+<apex:page standardController="Contact" tabStyle="contact" showHeader="false" showQuickActionVfHeader="false" showChat="false" sidebar="false">
+
+    <style>
+      .activeTab {background-color: #236FBD; color:white; 
+         background-image:none}
+      .inactiveTab { background-color: lightgrey; color:black; 
+         background-image:none}       
+   </style>
+
+	<c:vfcCommonHeader />
+
+   <apex:tabPanel switchType="client" selectedTab="tabdetails" 
+                  id="ContactTabPanel" tabClass="activeTab" 
+                  inactiveTabClass="inactiveTab">   
+      <apex:tab label="Details" name="ContactDetails" id="tabdetails">
+         <apex:detail relatedList="false" title="true"/>
+      </apex:tab>
+
+   </apex:tabPanel>
+</apex:page>
