@@ -1,0 +1,22 @@
+Boolean isError = false;
+List<Contact> lstContacts = [select id, name, email from Contact where Original_Email_Address__c = ''];
+for (Contact c: lstContacts){
+    	c.Original_Email_Address__c = c.email;
+}
+
+Database.SaveResult[] srList = Database.update(lstContacts, false);
+
+for (Database.SaveResult sr : srList) {
+    if (sr.isSuccess()) {
+        // Operation was successful, so get the ID of the record that was processed
+        System.debug('Successfully updated Contact ID: ' + sr.getId());
+    }
+    else {
+        // Operation failed, so get all errors                
+        for(Database.Error err : sr.getErrors()) {
+            System.debug('The following error has occurred.');                    
+            System.debug(err.getStatusCode() + ': ' + err.getMessage());
+            System.debug('Contact fields that affected this error: ' + err.getFields());
+        }
+    }
+}
