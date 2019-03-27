@@ -1,5 +1,9 @@
 https://forcedotcom.github.io/salesforcedx-vscode/articles/getting-started/first-project
 
+
+## Salesforce CLI Command Reference:
+https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_source.htm
+
 ### Get Single Object
 sfdx force:source:retrieve -m CustomObject:Account
 
