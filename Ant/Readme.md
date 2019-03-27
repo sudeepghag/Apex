@@ -59,8 +59,11 @@ https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_de
 
 https://developer.salesforce.com/docs/atlas.en-us.216.0.daas.meta/daas/meta_development.htm
 
+
 Metadata Types:
 https://developer.salesforce.com/docs/atlas.en-us.216.0.api_meta.meta/api_meta/meta_types_list.htm
+https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/manifest_samples.htm
+
 
 *	Metadata Type		--	Allows Wildcard (*)?
 *	AccountSettings		--	Not Applicable
