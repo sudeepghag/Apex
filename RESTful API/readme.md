@@ -1,6 +1,9 @@
-
+# Using Batch Apex
+Iterable / Iteratror
 
 ### [RestContext Class](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_methods_system_restcontext.htm)
+
+https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_iterable.htm
 
 ## [REST Error Handling Design](https://salesforce.stackexchange.com/questions/161429/rest-error-handling-design)
 
