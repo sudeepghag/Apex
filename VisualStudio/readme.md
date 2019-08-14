@@ -1,3 +1,7 @@
+# Set Up Visual Studio Code
+## Install Salesforce Extensions for Visual Studio Code
+https://trailhead.salesforce.com/en/content/learn/projects/quick-start-lightning-web-components/set-up-visual-studio-code
+
 https://forcedotcom.github.io/salesforcedx-vscode/articles/getting-started/first-project
 
 
