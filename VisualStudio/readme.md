@@ -4,6 +4,9 @@ https://trailhead.salesforce.com/en/content/learn/projects/quick-start-lightning
 
 https://forcedotcom.github.io/salesforcedx-vscode/articles/getting-started/first-project
 
+### Salesforce CLI installation:
+https://developer.salesforce.com/tools/sfdxcli
+
 
 ## Salesforce CLI Command Reference:
 https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_source.htm
