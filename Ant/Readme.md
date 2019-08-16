@@ -8,9 +8,9 @@ https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_de
 
    http://www.oracle.com/technetwork/java/javase/downloads/index.html
    
-   JAVA_HOME   :  C:\Program Files\Java\jdk1.8.0_172
-   PATH        :  C:\Program Files\Java\jdk1.8.0_172\bin
-   CLASSPATH   :  C:\Program Files\Java\jdk1.8.0_172\lib
+   1.1 JAVA_HOME   :  C:\Program Files\Java\jdk1.8.0_172
+   1.2 PATH        :  C:\Program Files\Java\jdk1.8.0_172\bin
+   1.3 CLASSPATH   :  C:\Program Files\Java\jdk1.8.0_172\lib
    
 2. install Apache Ant, Version 1.6 or later
    Visit http://ant.apache.org/
