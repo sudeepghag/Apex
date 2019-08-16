@@ -8,12 +8,12 @@ https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_de
 
    http://www.oracle.com/technetwork/java/javase/downloads/index.html
    
-   ### Open JDK
+   #### Open JDK
    https://adoptopenjdk.net/?variant=openjdk8&jvmVariant=hotspot
    
-   ### JAVA_HOME   :  C:\Program Files\Java\jdk1.8.0_172
-   ### PATH        :  C:\Program Files\Java\jdk1.8.0_172\bin
-   ### CLASSPATH   :  C:\Program Files\Java\jdk1.8.0_172\lib
+   #### JAVA_HOME   :  C:\Program Files\Java\jdk1.8.0_172
+   #### PATH        :  C:\Program Files\Java\jdk1.8.0_172\bin
+   #### CLASSPATH   :  C:\Program Files\Java\jdk1.8.0_172\lib
    
 2. install Apache Ant, Version 1.6 or later
    Visit http://ant.apache.org/
