@@ -33,6 +33,7 @@ https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_de
 5. Download the .zip file of the Winter '19 Ant Migration Tool.
 
    https://gs0.salesforce.com/dwnld/SfdcAnt/salesforce_ant_44.0.zip
+   https://gs0.salesforce.com/dwnld/SfdcAnt/salesforce_ant_46.0.zip
 
 6. Unzip
     ant-salesforce.jar
